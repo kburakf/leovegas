@@ -1,0 +1,14 @@
+-- CreateTable
+CREATE TABLE `User` (
+    `id` VARCHAR(255) NOT NULL,
+    `createdAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `email` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `name` VARCHAR(255),
+    `role` ENUM('ADMIN', 'USER') NOT NULL,
+    PRIMARY KEY (`id`)
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX `User_email_key` ON `User`(`email`);

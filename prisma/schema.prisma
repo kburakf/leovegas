@@ -1,0 +1,29 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = []
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+model User {
+  id           String      @id @default(cuid())
+  name         String
+  email        String   @unique
+  password     String
+  role         Role   @default(USER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
